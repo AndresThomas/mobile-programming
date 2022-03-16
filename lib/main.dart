@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movil/loading_view.dart';
+import 'package:movil/login_view2.dart';
 
 import 'login_view.dart';
-
-
 
 void main() {
   runApp(const MyApp());

@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:movil/listreob.dart';
 import 'package:movil/login_view.dart';
 
+import 'login_view2.dart';
+import 'login_view3.dart';
+import 'login_view4.dart';
+
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
 
@@ -22,22 +26,49 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawer(
-          child: ListView(            
+          child: ListView(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 100,
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(Icons.logout),
-            title: Text('Log out'),
+            leading: const Icon(Icons.logout),
+            title: const Text('Log out'),
             onTap: () {
               Navigator.pop(context);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const Login()));
             },
           ),
-          Divider(),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.navigate_next),
+            title: const Text('View 3 with margins'),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Login2()));
+            },
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.navigate_next),
+            title: const Text('View 3 columns'),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Login3()));
+            },
+          ),
+          const Divider(),
+          ListTile(
+            leading: const Icon(Icons.navigate_next),
+            title: const Text('View 3 wrap'),
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const Login4()));
+            },
+          ),
+          const Divider(),
         ],
       )),
       appBar: AppBar(
@@ -49,10 +80,7 @@ class _DashboardState extends State<Dashboard> {
         centerTitle: true,
       ),
       body: Center(
-          child: Column(children: [
-        const SizedBox(
-          height: 25,
-        ),
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Container(
           height: 300,
           decoration: BoxDecoration(

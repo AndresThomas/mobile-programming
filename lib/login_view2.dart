@@ -1,35 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:movil/dashboard.dart';
+import 'package:movil/listreob.dart';
+import 'package:movil/two_buttons.dart';
 
 import 'loading_view.dart';
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class Login2 extends StatefulWidget {
+  const Login2({Key? key}) : super(key: key);
 
   @override
-  State<Login> createState() => _LoginState();
+  State<Login2> createState() => _LoginState();
 }
 
-class _LoginState extends State<Login> {
-  final TextEditingController _userController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
-  login(String user, String password) async {
-    if (user.compareTo("admin") == 0 && password.compareTo("admin") == 0 || user =="" && password == "") {
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => loading()));
-      FocusScope.of(context).unfocus();
-      await Future.delayed(const Duration(seconds: 5), () {
-        Navigator.pop(context);
-      });
-
-      Navigator.pop(context);
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const Dashboard()),
-      );
-    }
-  }
-
+class _LoginState extends State<Login2> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -41,18 +24,35 @@ class _LoginState extends State<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
-                  width: 120,
-                  height: 120,
+                    margin: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 25),
+                    child: twoButtons()),
+                Container(
+                  width: 150,
+                  height: 150,
                   decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
                           image: NetworkImage(
-                              "https://media.istockphoto.com/photos/crocodile-jaws-wild-animal-picture-id492989166?k=20&m=492989166&s=612x612&w=0&h=dj5Wm2ySf54tzlMA989ZqXDIzJd5TA-6C5cHvhclyeI="),
+                              "https://images.pexels.com/photos/3689634/pexels-photo-3689634.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
                           fit: BoxFit.cover)),
                 ),
                 Container(
+                    margin: EdgeInsets.fromLTRB(20, 15, 20, 0),
+                    height: 100,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(7),
+                      color: Colors.white,
+                    ),
+                    child: const ListREOB(
+                        scrollIn: Axis.horizontal,
+                        itemColor: Colors.red,
+                        height: 50,
+                        width: 120,
+                        margin: 20,
+                        numberOfItems: 25)),
+                Container(
                     margin: const EdgeInsets.all(25),
-                    height: 240,
+                    height: 250,
                     decoration: BoxDecoration(
                         color: Colors.white60,
                         borderRadius: BorderRadius.circular(25.0)),
@@ -65,7 +65,6 @@ class _LoginState extends State<Login> {
                               borderRadius: BorderRadius.circular(25)),
                           margin: EdgeInsets.fromLTRB(45, 0, 45, 25),
                           child: TextFormField(
-                            controller: _userController,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(25)),
@@ -79,7 +78,6 @@ class _LoginState extends State<Login> {
                               borderRadius: BorderRadius.circular(25)),
                           margin: const EdgeInsets.fromLTRB(45, 0, 45, 0),
                           child: TextFormField(
-                            controller: _passwordController,
                             obscureText: true,
                             decoration: InputDecoration(
                               border: OutlineInputBorder(
@@ -96,7 +94,7 @@ class _LoginState extends State<Login> {
                   height: 40,
                   child: ElevatedButton(
                     onPressed: () {
-                      login(_userController.text, _passwordController.text);
+                      Navigator.of(context).pop();
                     },
                     child: const Text('Log in',
                         style: TextStyle(fontSize: 20)),
@@ -106,6 +104,7 @@ class _LoginState extends State<Login> {
             ),
           ),
         ),
+        bottomNavigationBar: twoButtons(),
       ),
     );
   }
